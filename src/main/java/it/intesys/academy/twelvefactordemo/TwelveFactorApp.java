@@ -7,8 +7,8 @@ public class TwelveFactorApp {
 
 	public static void main(String[] args) {
 
-		var customMessage = Configs.getCustomMessage();
-		var serverPort = Configs.getServerPort();
+		var customMessage = Configs.getStringProperty("CUSTOM_MESSAGE");
+		var serverPort = Configs.getIntegerProperty("SERVER_PORT");
 
 		Javalin app = Javalin.create()
 				.get("/", ctx -> ctx.result(customMessage))
