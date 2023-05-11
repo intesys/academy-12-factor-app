@@ -5,7 +5,7 @@ FROM eclipse-temurin:17
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY target/twelve-factor-demo-0.0.1-SNAPSHOT-jar-with-dependencies.jar my-app.jar
+COPY target/twelve-factor-demo-0.0.1-jar-with-dependencies.jar my-app.jar
 
 # Expose the port your application listens on (if applicable)
 EXPOSE 8080
