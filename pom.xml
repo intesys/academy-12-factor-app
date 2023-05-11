@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.intesys.academy</groupId>
 	<artifactId>twelve-factor-demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>twelve-factor-demo</name>
 	<description>Twelve Factor Demo Project</description>
 	<properties>
@@ -38,6 +38,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>3.4.2</version>
 				<configuration>
+					<finalName>twelve-factor-demo</finalName>
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
@@ -47,6 +48,7 @@
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
+					<appendAssemblyId>false</appendAssemblyId>
 				</configuration>
 				<executions>
 					<execution>
