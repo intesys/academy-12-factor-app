@@ -12,6 +12,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>17</java.version>
 		<javalin.version>5.5.0</javalin.version>
+		<aws-sdk.version>1.12.466</aws-sdk.version>
 
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
@@ -22,6 +23,12 @@
 			<groupId>io.javalin</groupId>
 			<artifactId>javalin</artifactId>
 			<version>${javalin.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>${aws-sdk.version}</version>
 		</dependency>
 
 		<dependency>
