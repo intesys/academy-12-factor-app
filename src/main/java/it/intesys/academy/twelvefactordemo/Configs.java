@@ -1,39 +1,49 @@
 package it.intesys.academy.twelvefactordemo;
 
+import java.io.InputStream;
+import java.util.Properties;
+
 public class Configs {
 
-    /**
-     * Test environment
-     */
-    public static final String CUSTOM_MESSAGE_TEST = "Hello World Test!";
-    public static final int SERVER_PORT_TEST = 8080;
-    public static final String DATABASE_PASSWORD_TEST = "abc1234";
-
-    /**
-     * Prod environment
-     */
-    public static final String CUSTOM_MESSAGE_PROD = "Hello World Prod!";
-    public static final int SERVER_PORT_PROD = 9090;
-    public static final String DATABASE_PASSWORD_PROD = "abc1234";
-
-
-
-
-    public static String getCustomMessage() {
-        String env = System.getenv("environment");
-        if (env != null && env.equals("prod")) {
-            return CUSTOM_MESSAGE_PROD;
-        } else {
-            return CUSTOM_MESSAGE_TEST;
+    static Properties properties;
+    static {
+        try {
+            // read properties from the application.properties
+            properties = new Properties();
+            InputStream resource = Configs.class.getClassLoader()
+                    .getResourceAsStream("application.properties");
+            properties.load(resource);
+        } catch (Exception e) {
+            throw new RuntimeException("Cannot read properties", e);
         }
     }
 
-    public static int getServerPort() {
-        String env = System.getenv("environment");
-        if (env != null && env.equals("prod")) {
-            return SERVER_PORT_PROD;
-        } else {
-            return SERVER_PORT_TEST;
+    public static String getStringProperty(String property) {
+
+        String prop = System.getenv(property);
+        if (prop != null) {
+            return prop;
         }
+
+        if (properties.getProperty(property) != null) {
+            return properties.getProperty(property);
+        }
+        throw new RuntimeException("Property " + property + " not found");
     }
+
+    public static Integer getIntegerProperty(String property) {
+
+        String prop = System.getenv(property);
+
+        if (prop != null) {
+            return Integer.parseInt(prop);
+        }
+
+        if (properties.getProperty(property) != null) {
+            return Integer.parseInt(properties.getProperty(property));
+        }
+
+        throw new RuntimeException("Property " + property + " not found");
+    }
+
 }
