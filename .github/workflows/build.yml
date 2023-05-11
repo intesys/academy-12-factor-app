@@ -45,4 +45,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: twelve-factor-demo.jar
-          path: target/twelve-factor-demo-0.0.1-jar-with-dependencies.jar
+          path: target/twelve-factor-demo.jar
