@@ -13,11 +13,14 @@ import com.amazonaws.services.s3.model.PutObjectResult;
 import com.amazonaws.util.AwsHostNameUtils;
 import com.amazonaws.util.StringUtils;
 import io.javalin.Javalin;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.net.InetAddress;
 
 public class TwelveFactorApp {
+    private final static Logger log = LoggerFactory.getLogger(TwelveFactorApp.class);
 
     public static void main(String[] args) {
 
@@ -37,7 +40,7 @@ public class TwelveFactorApp {
 
         // GET the home page of the app
         app.get("/", ctx -> {
-            System.out.println("saying hello to the user");
+            log.info("saying hello to the user");
             var customMessage = Configs.getStringProperty("CUSTOM_MESSAGE");
 
             ctx.result(customMessage + " (from " + InetAddress.getLocalHost().getHostName() + ")");
