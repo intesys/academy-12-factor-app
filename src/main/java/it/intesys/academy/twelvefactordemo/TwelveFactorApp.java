@@ -36,6 +36,7 @@ public class TwelveFactorApp {
 
         // GET the home page of the app
         app.get("/", ctx -> {
+            System.out.println("saying hello to the user");
             var customMessage = Configs.getStringProperty("CUSTOM_MESSAGE");
 
             ctx.result(customMessage);
@@ -51,6 +52,8 @@ public class TwelveFactorApp {
             var newFileRequest = ctx.bodyAsClass(NewFileRequest.class);
             String filename = newFileRequest.getFileName();
             String content = newFileRequest.getFileContent();
+
+            System.out.println("upload file " + filename + " with content " + content);
 
             PutObjectResult s3File = s3Client.putObject(
                     bucketName,
