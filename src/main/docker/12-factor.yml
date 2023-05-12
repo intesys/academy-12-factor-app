@@ -1,0 +1,23 @@
+version: '3'
+services:
+  12-factor-demo:
+    image: intesys/twelve-factor-app:latest
+    environment:
+      - SERVER_PORT=8080
+      - CUSTOM_MESSAGE=Hello World From Docker
+      - AWS_ENDPOINT=http://minio:9000
+      - AWS_ACCESS_KEY=myuser
+      - AWS_SECRET_KEY=mypassword
+    ports:
+      - 8085:8080
+  minio:
+    image: minio/minio:latest
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      - MINIO_ROOT_USER=myuser
+      - MINIO_ROOT_PASSWORD=mypassword
+    volumes:
+      - ./data:/data
+    command: server /data --console-address ":9001"
