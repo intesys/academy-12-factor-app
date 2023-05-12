@@ -31,7 +31,7 @@ jobs:
           prerelease: false
           release_name: ${{ steps.version.outputs.version }}
           tag_name: ${{ github.ref }}
-          body: my wonderful release ${{ github.ref }}
+          body: my wonderful release ${{ github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
@@ -42,7 +42,7 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: target/twelve-factor-demo.jar
-          asset_name: twelve-factor-demo-${{ github.ref }}.jar
+          asset_name: twelve-factor-demo-${{ github.ref_name }}.jar
           asset_content_type: application/zip
 
       - name: Set up Docker Buildx
@@ -59,4 +59,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: intesys/twelve-factor-app:${{ github.ref }}
+          tags: intesys/twelve-factor-app:${{ github.ref_name }}
