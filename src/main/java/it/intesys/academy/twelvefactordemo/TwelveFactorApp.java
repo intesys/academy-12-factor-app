@@ -37,6 +37,7 @@ public class TwelveFactorApp {
 
         // GET the home page of the app
         app.get("/", ctx -> {
+            System.out.println("saying hello to the user");
             var customMessage = Configs.getStringProperty("CUSTOM_MESSAGE");
 
             ctx.result(customMessage + " (from " + InetAddress.getLocalHost().getHostName() + ")");
