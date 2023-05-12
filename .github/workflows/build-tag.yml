@@ -1,4 +1,4 @@
-name: Build JAR using Maven Wrapper
+name: Build Release JARs and docker containers
 
 on:
   push:
