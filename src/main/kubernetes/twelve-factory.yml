@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 12-factor-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: 12-factor-demo
+  template:
+    metadata:
+      labels:
+        app: 12-factor-demo
+    spec:
+      containers:
+        - name: 12-factor-demo
+          image: intesys/twelve-factor-app:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SERVER_PORT
+              value: "8080"
+            - name: CUSTOM_MESSAGE
+              value: "Hello World From Docker"
+            - name: AWS_ENDPOINT
+              value: "http://minio:9000"
+            - name: AWS_ACCESS_KEY
+              value: "myuser"
+            - name: AWS_SECRET_KEY
+              value: "mypassword"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: 12-factor-demo-service
+spec:
+  selector:
+    app: 12-factor-demo
+  ports:
+    - protocol: TCP
+      port: 8085
+      targetPort: 8080
