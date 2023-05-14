@@ -34,7 +34,7 @@ public class TwelveFactorApp {
         }
 
         // start web server
-        var serverPort = Configs.getIntegerProperty("SERVER_PORT");
+        var serverPort = Configs.getIntegerProperty("PORT");
         Javalin app = Javalin.create()
                 .start(serverPort);
 

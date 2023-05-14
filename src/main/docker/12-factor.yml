@@ -3,7 +3,7 @@ services:
   12-factor-demo:
     image: intesys/twelve-factor-app:latest
     environment:
-      - SERVER_PORT=8080
+      - PORT=8080
       - CUSTOM_MESSAGE=Hello World From Docker
       - AWS_ENDPOINT=http://minio:9000
       - AWS_ACCESS_KEY=myuser

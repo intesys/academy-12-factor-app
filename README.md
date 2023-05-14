@@ -1,13 +1,13 @@
 # 12 Factor Demo Deployment guide
 
-## Java
+## Java fat jar
 
 Download the jar from the [releases](/releases) page.
 
 Create a configuration file (`config/application.properties`) with the following content
 
 ```
-SERVER_PORT=8080
+PORT=8080
 CUSTOM_MESSAGE="Hello World From Configs"
 
 # use the endpoint if you are using minio
@@ -30,6 +30,21 @@ Run the application
 ```bash
 java -jar 12-factor-app.jar
 ```
+
+## Heroku
+
+```
+heroku create
+
+git push heroku master
+
+heroku config:set CUSTOM_MESSAGE="Hello World From Heroku"
+heroku config:set AWS_REGION="eu-south-1"
+heroku config:set AWS_ACCESS_KEY=""
+heroku config:set AWS_SECRET_KEY=""
+heroku config:set AWS_BUCKET="twelve-factor-demo"
+```
+
 
 ## Docker Compose
 
