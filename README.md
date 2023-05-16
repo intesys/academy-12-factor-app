@@ -36,11 +36,12 @@ java -jar 12-factor-app.jar
 ```
 heroku create
 
-git push heroku master
+git push heroku main
 
 heroku config:set CUSTOM_MESSAGE="Hello World From Heroku"
+heroku config:set AWS_ENDPOINT=""
 heroku config:set AWS_REGION="eu-south-1"
-heroku config:set AWS_ACCESS_KEY=""
+heroku config:set AWS_ACCESS_KEY="AKIASJNI4DZVFRAFOE5H"
 heroku config:set AWS_SECRET_KEY=""
 heroku config:set AWS_BUCKET="twelve-factor-demo"
 ```
